@@ -2,11 +2,15 @@ package com.nasa.prueba.aspirante.dominio.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "nasa_data")
 @Getter @Setter
 public class PruebaEntity {
@@ -22,6 +26,9 @@ public class PruebaEntity {
     private String title;
     @Column(name = "nasa_id", columnDefinition = "varchar(250)", nullable = false)
     private String nasaId;
+    @Column(name = "modified_date", columnDefinition = "")
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
     @Override
     public boolean equals(Object o) {
